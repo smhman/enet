@@ -55,7 +55,7 @@ if(HAS_SOCKLEN_T)
     add_definitions(-DHAS_SOCKLEN_T=1)
 endif()
 
-include_directories(${PROJECT_SOURCE_DIR}/include)
+# include_directories(${PROJECT_SOURCE_DIR}/include)
 
 set(INCLUDE_FILES_PREFIX include/enet)
 set(INCLUDE_FILES
@@ -89,6 +89,8 @@ add_library(enet STATIC
     ${SOURCE_FILES}
 )
 
-if (MINGW)
+if (WIN32)
     target_link_libraries(enet winmm ws2_32)
 endif()
+
+target_include_directories(enet PUBLIC include)
